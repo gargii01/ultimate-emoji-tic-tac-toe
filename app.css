@@ -1,0 +1,302 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Menu Styles */
+.menu-card {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 28rem;
+  width: 100%;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1f2937;
+}
+
+.emoji-selector {
+  margin-bottom: 2rem;
+}
+
+.emoji-selector h2 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  color: #4b5563;
+}
+
+.emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.emoji-option {
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid #e5e7eb;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.emoji-option:hover {
+  border-color: #d1d5db;
+}
+
+.emoji-option.selected {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.emoji-pair {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.emoji-name {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.mode-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mode-btn {
+  width: 100%;
+  background-color: #4b5563;
+  color: white;
+  font-weight: 500;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.mode-btn:hover {
+  background-color: #374151;
+}
+
+.mode-btn.primary {
+  background-color: #1f2937;
+}
+
+.mode-btn.primary:hover {
+  background-color: #111827;
+}
+
+/* Game Styles */
+.game-card {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  max-width: 56rem;
+  width: 100%;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.status {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.control-btn {
+  padding: 0.5rem;
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-btn:hover:not(:disabled) {
+  background-color: #e5e7eb;
+}
+
+.control-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.control-btn.primary {
+  background-color: #1f2937;
+  color: white;
+}
+
+.control-btn.primary:hover {
+  background-color: #111827;
+}
+
+/* Big Board */
+.big-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.board-wrapper {
+  position: relative;
+}
+
+/* Mini Board */
+.mini-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  transition: all 0.2s;
+}
+
+.mini-board.active {
+  border: 2px solid #1f2937;
+  background-color: #f3f4f6;
+}
+
+.mini-board.won {
+  opacity: 0.6;
+}
+
+.mini-board.selectable {
+  border: 2px solid #d1d5db;
+  background-color: #f9fafb;
+  cursor: pointer;
+}
+
+.mini-board.selectable:hover {
+  border-color: #9ca3af;
+  background-color: #f3f4f6;
+}
+
+/* Cell */
+.cell {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.875rem;
+  border-radius: 0.25rem;
+  background-color: #f9fafb;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mini-board.active .cell:not(.filled):not(:disabled) {
+  background-color: white;
+  cursor: pointer;
+}
+
+.mini-board.active .cell:not(.filled):not(:disabled):hover {
+  background-color: #f9fafb;
+}
+
+.cell.filled {
+  background-color: #f9fafb;
+  cursor: not-allowed;
+}
+
+.cell:disabled {
+  background-color: #f9fafb;
+  cursor: not-allowed;
+}
+
+.cell.winning {
+  background-color: #e5e7eb;
+}
+
+/* Winner Overlay */
+.winner-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 0.25rem;
+}
+
+.winner-emoji {
+  font-size: 3.75rem;
+}
+
+/* Play Again Button */
+.play-again-btn {
+  width: 100%;
+  background-color: #1f2937;
+  color: white;
+  font-weight: 500;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.play-again-btn:hover {
+  background-color: #111827;
+}
+
+/* Responsive */
+@media (min-width: 640px) {
+  .cell {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  .game-card {
+    padding: 1.5rem;
+  }
+  
+  .status {
+    font-size: 1.5rem;
+  }
+}
